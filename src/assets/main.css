@@ -1,0 +1,10 @@
+@import "./grid.css";
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+h1{
+  margin-top: 0;
+  margin-bottom: 16px;
+}
