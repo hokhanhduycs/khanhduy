@@ -15,9 +15,9 @@
   background: #a8f1f773;
   padding-top: 20px;
 }
-.about-content{
+.about-content { 
     margin: 0 -8px;
-    .box{
+    .box {
     background: #53c1c9;
     border: solid 1px rgb(3, 1, 1);
     height: 200px;

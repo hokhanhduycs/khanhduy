@@ -1,9 +1,7 @@
 <script setup>
-// import { RouterLink, RouterView } from 'vue-router'
-import Nav from '@/components/Nav.vue'
+import Blog from '@/layouts/Blog.vue'
 </script>
 
 <template>
-  <Nav></Nav>
-  <RouterView />
+  <Blog></Blog>
 </template>

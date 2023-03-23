@@ -1,10 +1,68 @@
 @import "./grid.css";
-body{
+
+:root {
+  --primary: #35b345;
+  --primary-hover: #309c3e;
+  --black: #020301;
+  --white: #fff;
+  --text-color: #161823;
+
+  --font-family: 'ProximaNova', sans-serif;
+
+
+  --danger: #f12b2b;
+  --success: #1ebd1e;
+  --info: #25a2eb;
+
+  /* // Default layout */
+  --default-layout-header-height: 60px;
+  --default-layout-width: 1150px;
+  --default-layout-horizontal-spacer: 24px;
+}
+
+*{
   margin: 0;
   padding: 0;
-  box-sizing: border-box !important;
+  box-sizing: border-box;
 }
+
+html{
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-rendering: optimizespeed;
+  color: var(--text-color);
+  overflow-y: overlay;
+}
+
 h1{
   margin-top: 0;
   margin-bottom: 16px;
+}
+
+a{
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+/* css khoang cach icon button  */
+button>span{
+  margin-right: 8px;
+}
+button>svg~span{
+  margin-left: 8px;
+}
+span~svg {
+  margin-right: -8px;
 }
