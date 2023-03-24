@@ -3,7 +3,7 @@
     :disabled="disabled"
     class="my-button"
     :class="{ 
-        outline, text, pill, //class
+        outline, text, pill, full,//class
         small, large,  //size
         danger, success, info //color
         }"
@@ -22,6 +22,7 @@ export default {
     outline: Boolean,
     text: Boolean,
     pill: Boolean,
+    full: Boolean,
 
     // icon truyen qua slot (+ leadingicon/ trailling icon)
 
@@ -101,6 +102,10 @@ export default {
         min-width: 38px;
     }
 
+    &.full {
+        min-width: 100%;
+    }
+
     // Button sizes
     &.small {
         min-width: 88px;
@@ -111,6 +116,8 @@ export default {
         padding: 14px 16px;
         min-width: 140px;
     }
+
+
 
     // 
     &.danger {
