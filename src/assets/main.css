@@ -1,8 +1,8 @@
 @import "./grid.css";
 
 :root {
-  --primary: #35b345;
-  --primary-hover: #309c3e;
+  --primary: #6366F1;
+  --primary-hover: #5c5edf;
   --black: #020301;
   --white: #fff;
   --text-color: #161823;
@@ -10,9 +10,10 @@
   --font-family: 'ProximaNova', sans-serif;
 
 
-  --danger: #f12b2b;
-  --success: #1ebd1e;
-  --info: #25a2eb;
+  --danger: #EF4444;
+  --success: #22C55E;
+  --info: #3B82F6;
+  --warning: #F59E0B;
 
   /* // Default layout */
   --default-layout-header-height: 60px;

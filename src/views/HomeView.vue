@@ -4,6 +4,7 @@
   import Button from '@/components/Button.vue'
   // import InputField from '@/components/InputField.vue'
   import CardFilm from '@/components/CardFilm.vue'
+  import Tag from '@/components/Tag.vue'
   
   const listFilm = ref([
     {
@@ -108,6 +109,16 @@
 <template>
   <div class="home grid wide">
     <h1 class="page-title c-12">Home Page</h1>
+
+    <h2 class="home-title">Tag</h2>
+    <div class="home-tag row">
+      <Tag>Primary</Tag>
+      <Tag success>Success</Tag>
+      <Tag warning>Warning</Tag>
+      <Tag info>Info</Tag>
+      <Tag danger>Danger</Tag>
+
+    </div>
 
     <h2 class="home-title">Gird</h2>
     <div class="home-content row">

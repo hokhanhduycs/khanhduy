@@ -4,13 +4,39 @@
             <h2 class="title">Film</h2>
             <hr>
             <div class="content">
-                <div class="film_id">id</div>
-                <div class="film_name">name</div>
-                <div class="film_img">img</div>
-                <div class="film_describe">describe</div>
-                <div class="film_chaps">chaps</div>
-                <div class="film_tags">tags</div>
-                <div class="film_types">types</div>
+                <div class="film_id">
+                    <label for="film_name">Film id:</label>
+                    1 
+                </div>
+                <div class="film_name">
+                    <label for="film_name">Film name:</label>
+                    <input type="text">
+                </div>
+                <div class="film_img">
+                    <label for="film_img">Film Image:</label>
+                    <input type="file" accept="image/*" onchange="loadFile(event)">
+                </div>
+                <div class="film_describe">
+                    <label for="film_name">Film describe:</label>
+                    <input type="text">
+                </div>
+                <div class="film_chaps row">
+                    <label for="film_chaps">Film chaps:</label>
+                    <Tag success>Chap 1</Tag>
+                    <Tag success>Chap 2</Tag>
+                    <Tag success>Chap 3</Tag>
+                </div>
+                <div class="film_tags row">
+                    <label for="film_chaps">Film tags:</label>
+                    <Tag info>Tag 1</Tag>
+                    <Tag info>Tag 2</Tag>
+                    <Tag info>Tag 3</Tag>
+                </div>
+                <div class="film_types row"> 
+                    <label for="film_chaps">Film types:</label>
+                    <Tag warning>Type 1</Tag>
+                    <Tag warning>Type 2</Tag>
+                    <Tag warning>Type 3</Tag></div>
             </div>
             <hr>
             <div class="btn">
@@ -28,6 +54,7 @@
 
 <script setup>
 import Button from "@/components/Button.vue";
+import Tag from "@/components/Tag.vue";
 
 </script>
 
