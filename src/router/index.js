@@ -27,6 +27,16 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('@/game/Flappy-bird/FlappyBird.vue')
     }
+    // ,
+    // {
+    //   path: '/',
+    //   name: 'admin',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('@/layouts/Admin.vue')
+    // }
+
 
 
   ]

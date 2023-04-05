@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .about {
   background: #a8f1f773;
   padding-top: 20px;
