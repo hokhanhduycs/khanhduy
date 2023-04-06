@@ -2,9 +2,11 @@
   import {ref} from 'vue'
 
   import Button from '@/components/Button.vue'
-  // import InputField from '@/components/InputField.vue'
+  import InputField from '@/components/InputField.vue'
+  import Input from '@/components/Input.vue'
   import CardFilm from '@/components/CardFilm.vue'
   import Tag from '@/components/Tag.vue'
+  import Textarea from '@/components/Textarea.vue'
   
   const listFilm = ref([
     {
@@ -110,6 +112,35 @@
   <div class="home grid wide">
     <h1 class="page-title c-12">Home Page</h1>
 
+    <h2 class="home-title">Input Field</h2>
+    <div class="home-input-field row">
+      <div class="c-12">
+
+        <InputField label="Ho khanh duy" placeholder="ho khanh duy"></InputField>
+      </div>
+      <div class="c-12">
+        <InputField label="Ho khanh duy"></InputField>
+      </div>
+  </div>
+  <div class="home-input-field row">
+      <div class="c-12">
+
+        <Input label="Ho khanh duy" placeholder="ho khanh duy"></Input>
+      </div>
+      <div class="c-12">
+        <Input label="Ho khanh duy"></Input>
+      </div>
+  </div>
+  <div class="home-input-field row">
+      <div class="c-6">
+
+        <Textarea label="Ho khanh duy" placeholder="ho khanh duy"></Textarea>
+      </div>
+      <div class="c-6">
+        <Textarea label="Ho khanh duy"></Textarea>
+      </div>
+  </div>
+
     <h2 class="home-title">Tag</h2>
     <div class="home-tag row">
       <Tag>Primary</Tag>
@@ -189,12 +220,7 @@
 
     </div>
 
-    <!-- <h2 class="home-title">Input Field</h2>
-    <div class="home-input-field row">
-      <div class="c-12">
-        <InputField label="Ho Khanh Duy"></InputField>
-      </div>
-    </div> -->
+
     
     <h2 class="home-title">Card</h2>
     <div class="home-card row">

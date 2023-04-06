@@ -4,6 +4,6 @@ import Admin from '@/layouts/Admin.vue'
 </script>
 
 <template>
-  <!-- <Blog></Blog> -->
-  <Admin></Admin>
+  <Blog></Blog>
+  <!-- <Admin></Admin> -->
 </template>
