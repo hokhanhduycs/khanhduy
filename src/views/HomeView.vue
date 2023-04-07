@@ -7,6 +7,8 @@
   import CardFilm from '@/components/CardFilm.vue'
   import Tag from '@/components/Tag.vue'
   import Textarea from '@/components/Textarea.vue'
+  import Chip from '@/components/Chip.vue'
+  import AutoComplete from '@/components/AutoComplete.vue'
   
   const listFilm = ref([
     {
@@ -140,6 +142,16 @@
         <Textarea label="Ho khanh duy"></Textarea>
       </div>
   </div>
+  <h2 class="home-title">Auto Complete</h2>
+  <div class="home-input-field row">
+      <div class="c-6">
+
+        <AutoComplete label="Ho khanh duy" placeholder="ho khanh duy"></AutoComplete>
+      </div>
+      <div class="c-6">
+        <AutoComplete label="Ho khanh duy"></AutoComplete>
+      </div>
+  </div>
 
     <h2 class="home-title">Tag</h2>
     <div class="home-tag row">
@@ -148,6 +160,15 @@
       <Tag warning>Warning</Tag>
       <Tag info>Info</Tag>
       <Tag danger>Danger</Tag>
+
+    </div>
+    <h2 class="home-title">Chip</h2>
+    <div class="home-Chip row">
+      <Chip>Primary</Chip>
+      <Chip success>Success</Chip>
+      <Chip warning>Warning</Chip>
+      <Chip info>Info</Chip>
+      <Chip danger>Danger</Chip>
 
     </div>
 

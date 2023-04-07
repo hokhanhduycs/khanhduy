@@ -21,7 +21,8 @@ import {
     faFilm,
     faFileVideo,
     faTag,
-    faXmark
+    faXmark,
+    faAngleDown
 } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
@@ -33,7 +34,8 @@ library.add(
     faFilm,
     faFileVideo,
     faTag,
-    faXmark
+    faXmark,
+    faAngleDown
     )
 
 const app = createApp(App)
