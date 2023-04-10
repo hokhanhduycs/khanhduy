@@ -58,7 +58,7 @@
    return selected
   }
   const delSelect = (value) =>{
-    selected.value.pop(value)
+    selected.value.splice(value, 1)
    console.log(selected.value)
   return selected
  }
