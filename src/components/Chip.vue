@@ -33,6 +33,7 @@ export default {
     align-items: center;
     height: 32px;
     pointer-events: none;
+    margin: 2px;
     
     & ~ .chip{
       margin-left: 4px;
