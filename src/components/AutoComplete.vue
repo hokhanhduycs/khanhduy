@@ -18,7 +18,7 @@
             placeholder="Search"
             v-model="searchSelect"
           />
-          <div class="test">{{ searchSelect }}</div>
+          <!-- <div class="test">{{ searchSelect }}</div> -->
         </div>
       </div>
       <button class="c-1"
@@ -26,9 +26,9 @@
       ><font-awesome-icon icon="fa-solid fa-angle-down"/></button>
     </div>
     <div class="ul-select"
-    v-show="showSelect"
+    v-show="showSelect && filterList.length > 0"
     >
-      <li v-for="(item, index) in list" 
+      <li v-for="(item, index) in filterList" 
       :key="index"
       @click="addSelect(item)"
       >{{ item.name }}</li>
@@ -41,7 +41,7 @@
 
  import {computed, ref} from 'vue'
   const showSelect = ref(false)
- const list = ref(
+ const lists = ref(
   [
     { id: 1, name: 'Apple' },
     { id: 2, name: 'Banana' },
@@ -52,8 +52,9 @@
   )
  const selected = ref(["safkldj"])
  const addSelect = (value) =>{
-   selected.value.push(value)
+   selected.value.push(value.name)
    showSelect.value = false
+   searchSelect.value = ""
    return selected
   }
   const delSelect = (value) =>{
@@ -61,10 +62,18 @@
    console.log(selected.value)
   return selected
  }
- const searchSelect = ref(null)
- const list = computed(() =>{
-  showSelect.value = true
-  return list.value.filter(list => list.toLocaleLowerCase().includes(searchSelect.toLocaleLowerCase()))
+ const searchSelect = ref("")
+ const filterList = computed(() =>{
+  if(searchSelect.value.length > 0){
+    showSelect.value = true
+  }else{
+    showSelect.value = false
+
+  }
+  
+  return lists.value.filter(list => {
+    return list.name.toLowerCase().includes(searchSelect.value.toLowerCase())
+  })
  })
 defineProps({
   label: String,
@@ -93,6 +102,7 @@ defineProps({
       border-bottom-left-radius: 5px;
       line-height: 30px;
       padding: 4px 16px;
+      min-height: 50px;
       &:active{
         box-shadow: 0 0 0 0.2rem #C7D2FE;
         border-color: var(--primary);
@@ -122,7 +132,7 @@ defineProps({
       box-shadow: 3px 10px 15px -3px rgba(0,0,0,0.1);      
       width: calc(100% - 48px);
       overflow-y: scroll;
-      height: 200px;
+      max-height: 200px;
       transition: 0.2s;
       
       li{

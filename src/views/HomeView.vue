@@ -9,24 +9,6 @@
   import Textarea from '@/components/Textarea.vue'
   import Chip from '@/components/Chip.vue'
   import AutoComplete from '@/components/AutoComplete.vue'
-
-  const items = ref([
-    { id: 1, name: 'Apple' },
-    { id: 2, name: 'Banana' },
-    { id: 3, name: 'Cherry' },
-    { id: 4, name: 'Durian' },
-    { id: 5, name: 'Elderberry' },
-  ])
-
-  
-  const searchTerm = ref('')
-
-  const filteredItems = computed(() => {
-    return items.value.filter(item => {
-      return item.name.toLowerCase().includes(searchTerm.value.toLowerCase())
-    })
-  })
-  
   const listFilm = ref([
     {
       title: "Title sf laksf lkasf askf alksfd alfskf 1 asdkfj asdf asdflka sflkasf ",
@@ -128,15 +110,6 @@
   ])
 </script>
 <template>
-   <div>
-    <div class="search-container">
-      <input type="text" v-model="searchTerm" placeholder="Search...">
-    </div>
-    <ul>
-      <li v-for="item in filteredItems" :key="item.id">{{ item.name }}</li>
-    </ul>
-  </div>
-
   <div class="home grid wide">
     <h1 class="page-title c-12">Home Page</h1>
 
