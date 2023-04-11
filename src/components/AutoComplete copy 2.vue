@@ -40,14 +40,7 @@
  import Chip from "@/components/Chip.vue";
 
  import {computed, ref} from 'vue'
-  const propsd = defineProps({
-    label: String,
-    name: String,
-    value: String,
-    full: Boolean,
-    lists: Object
 
-  })
 //  const vFocus = {
 //   mounted: (el) => el.focus()
 // }
@@ -83,13 +76,19 @@
     showSelect.value = false
 
   }
-  // console.log(propsd.label)
-  // return propsd.lists
-  return propsd.lists.filter(list => {
+  
+  return lists.value.filter(list => {
     return list.name.toLowerCase().includes(searchSelect.value.toLowerCase())
   })
  })
+defineProps({
+    label: String,
+    name: String,
+    value: String,
+    full: Boolean,
+    lists: Object
 
+})
 </script>
 <style scoped lang="scss">
 .auto-complete{

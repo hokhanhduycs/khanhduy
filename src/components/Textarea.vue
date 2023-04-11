@@ -19,7 +19,7 @@ export default {
       name: String,
       value: String,
       full: Boolean,
-    placeholder: String,
+      placeholder: String,
 
   },
 };
