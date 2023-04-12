@@ -6,9 +6,9 @@
     <div class="content row">
       <div class="ul-content c-11">
         <div class="list row">
-            <Chip v-for="(item, index) in selected" 
+            <Chip v-for="(item, index) in selectedT" 
             :key="index"
-            @:click.native="delSelect(index)"
+            @click.native="delSelect(index)"
             >{{ item }}</Chip>
 
           <!-- ============ -->
@@ -45,7 +45,8 @@
     name: String,
     value: String,
     full: Boolean,
-    lists: Object
+    lists: Object,
+    selected: Array
 
   })
 //  const vFocus = {
@@ -63,17 +64,17 @@
 //     { id: 7, name: "adsffdas" }
 //   ]
 //   )
- const selected = ref(["safkldj"])
+ const selectedT = ref(propsd.selected)
  const addSelect = (value) =>{
-   selected.value.push(value.name)
+   selectedT.value.push(value.name)
    showSelect.value = false
    searchSelect.value = ""
-   return selected
+   return selectedT
   }
   const delSelect = (value) =>{
-    selected.value.splice(value, 1)
-   console.log(selected.value)
-  return selected
+    selectedT.value.splice(value, 1)
+   console.log(selectedT.value)
+  return selectedT
  }
  const searchSelect = ref("")
  const filterList = computed(() =>{
@@ -133,17 +134,20 @@
         }
     }
     .ul-select{
-      position: absolute;
+      position: fixed;
       background-color: #fff;
       border-radius: 5px;
       padding: 16px 0; 
       box-shadow: 3px 10px 15px -3px rgba(0,0,0,0.1);      
-      width: calc(100% - 48px);
+      // width: calc(100% - 48px);
+      min-width: 400px;
       overflow-y: scroll;
       max-height: 200px;
       transition: 0.2s;
+      z-index: 9;
       
       li{
+        position: relative;
         list-style: none;
         transition: 0.2s;
         margin: 1px;

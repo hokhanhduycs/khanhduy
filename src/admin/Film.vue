@@ -2,7 +2,7 @@
   <div class="film">
     <h3 class="title">Film</h3>
     <div class="btn">
-      <Button>+ Add new</Button>
+      <Button @click.native="addNew()">+ Add new</Button>
     </div>
     <div class="table-th row">
       <div class="c-1 t-j id">ID</div>
@@ -22,18 +22,48 @@
       </div>
       <div class="c-2 t-j current-chap">{{ film.chap }}</div>
       <div class="c-2 t-j control row">
-        <div class="edit">
+        <div class="edit" @click="editFilm()">
           <font-awesome-icon icon="fa-solid fa-pen-to-square" />
         </div>
         <div class="del"><font-awesome-icon icon="fa-solid fa-trash" /></div>
       </div>
     </div>
+    <Add :showAdd="showAdd" :dataFilm="dataFilm"></Add>
   </div>
 </template>
 <script setup>
 import Button from "@/components/Button.vue";
+import Add from '@/admin/Add.vue'
 import { ref } from "vue";
+import { useAdminStore } from '../stores/counter';
 
+const showAdd = ref(true)
+const adminStore = useAdminStore()
+const dataFilm = ref({
+  id: -1,
+  chap: '',
+  name: '',
+  img: '',
+  describe: '',
+  tags: [],
+  types: []
+
+})
+const addNew = () =>{
+  adminStore.setShowAdd(true)
+}
+// const editFilm = (id) =>{
+const editFilm = () =>{
+  adminStore.setShowAdd(true)
+  const id = 1
+  dataFilm.value.id = id
+  dataFilm.value.chap = "tap 10"
+  dataFilm.value.name= 'aaflkj'
+  dataFilm.value.img = ""
+  dataFilm.value.describe = "hay"
+  dataFilm.value.tags = ['tag 1', 'tag 2']
+  dataFilm.value.types = ['type 1']
+}
 const films = ref([
   {
     id: 1,

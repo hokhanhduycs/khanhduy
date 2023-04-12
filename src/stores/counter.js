@@ -10,3 +10,11 @@ export const useCounterStore = defineStore('counter', () => {
 
   return { count, doubleCount, increment }
 })
+
+export const useAdminStore = defineStore('admin', () => {
+  const showAdd = ref(true)
+  function setShowAdd(b){
+    showAdd.value = b
+  }
+  return{showAdd, setShowAdd}
+})
