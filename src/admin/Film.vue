@@ -16,7 +16,7 @@
     <div v-for="(film, index) in films" :key="index" class="table-td row">
       <div class="c-1 t-j id">{{ film.id }}</div>
       <div class="c-1 t-j img">
-        <img src="" alt="">
+        <img :src="film.img" alt="">
       </div>
       <div class="c-3 t-j name-film">{{ film.title }}</div>
       <div class="c-3 t-j tags-film row">
