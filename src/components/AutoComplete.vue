@@ -64,7 +64,7 @@
 //     { id: 7, name: "adsffdas" }
 //   ]
 //   )
- const selectedT = ref(propsd.selected)
+ const selectedT = computed(()=> propsd.selected)
  const addSelect = (value) =>{
    selectedT.value.push(value.name)
    showSelect.value = false

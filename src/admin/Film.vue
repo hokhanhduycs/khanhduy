@@ -51,6 +51,14 @@ const dataFilm = ref({
 })
 const addNew = () =>{
   adminStore.setShowAdd(true)
+  const id = -1
+  dataFilm.value.id = null
+  dataFilm.value.chap = ""
+  dataFilm.value.name= ''
+  dataFilm.value.img = ""
+  dataFilm.value.describe = ""
+  dataFilm.value.tags = []
+  dataFilm.value.types = []
 }
 // const editFilm = (id) =>{
 const editFilm = () =>{
