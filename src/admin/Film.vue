@@ -6,7 +6,8 @@
     </div>
     <div class="table-th row">
       <div class="c-1 t-j id">ID</div>
-      <div class="c-4 t-j name-film">Name Film</div>
+      <div class="c-1 t-j img">Image</div>
+      <div class="c-3 t-j name-film">Name Film</div>
       <div class="c-3 t-j tags-film">Tags Film</div>
       <div class="c-2 t-j current-chap">Current Chap</div>
       <div class="c-2 t-j control">Control</div>
@@ -14,7 +15,10 @@
 
     <div v-for="(film, index) in films" :key="index" class="table-td row">
       <div class="c-1 t-j id">{{ film.id }}</div>
-      <div class="c-4 t-j name-film">{{ film.title }}</div>
+      <div class="c-1 t-j img">
+        <img src="" alt="">
+      </div>
+      <div class="c-3 t-j name-film">{{ film.title }}</div>
       <div class="c-3 t-j tags-film row">
         <div class="tag" small v-for="tag in film.tags" :key="tag">
           {{ tag.tag_title }}
