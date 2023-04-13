@@ -5,24 +5,23 @@
     </label>
     <textarea
       :name="name"
-      :value="value"
+      :value="modelValue"
       :placeholder="placeholder"
       rows="3" cols="30"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
     </textarea>
   </div>
 </template>
-<script>
-export default {
-    props: {
-      label: String,
-      name: String,
-      value: String,
-      full: Boolean,
-      placeholder: String,
-
-  },
-};
+<script setup>
+  defineProps({
+    label: String,
+    name: String,
+    modelValue: String,
+    full: Boolean,
+    placeholder: String,
+  })
+  defineEmits(['update:modelValue'])
 </script>
 <style lang="scss">
 .my-textarea{

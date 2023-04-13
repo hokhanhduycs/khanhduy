@@ -55,7 +55,7 @@ const data = ref(propsd.dataFilm)
                 <div class="film_name c-12">
                     <Input label="Film name" placeholder="Film name" v-model="data.film_name"></Input>
                     <!-- {{ data.film_name }} -->
-                    <CustomInput v-model="data.film_name"></CustomInput>
+                    <!-- <CustomInput v-model="data.film_name"></CustomInput> -->
                     <!-- asdfkljsda
                     {{ data.film_name }}
                     asdkfj -->
@@ -73,7 +73,7 @@ const data = ref(propsd.dataFilm)
                     </div>
                 </div>
                 <div class="film_describe c-12">
-                    <Textarea :value="dataFilm.describe" label="Film describe" placeholder="Describe ..."></Textarea>
+                    <Textarea v-model="dataFilm.describe" label="Film describe" placeholder="Describe ..."></Textarea>
 
                 </div>
                 <div class="film_tags c-12">
