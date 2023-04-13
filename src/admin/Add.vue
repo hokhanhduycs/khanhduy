@@ -8,18 +8,11 @@ import AutoComplete from '@/components/AutoComplete.vue'
 
 import { useAdminStore } from '../stores/counter';
 
+// import axios from 'axios'
 
-const lists = ref(
-  [
-    { id: 1, name: 'Apple' },
-    { id: 2, name: 'Banana' },
-    { id: 3, name: 'Cherry' },
-    { id: 4, name: 'Durian' },
-    { id: 5, name: 'Elderberry' },
-    { id: 6, name: "sfafsfa" },
-    { id: 7, name: "adsffdas" }
-  ]
-  )
+// const data = ref([])
+
+
 const tag_film = ref([
     {id: 1, name: "thuyet minh"},
     {id: 2, name: "vietsub"},
@@ -33,16 +26,17 @@ const type_film = ref([
 const img_src = ref('./images/film/filmTest.jpg')
 
 const adminStore = useAdminStore()
-defineProps({
+const propsd = defineProps({
     // showAdd: Boolean
     dataFilm: Object
 })
-
+const data = ref(propsd.dataFilm)
 </script>
 <template>
     <div v-show="adminStore.showAdd" class="add" >
         <div class="box">
             <h2 class="title">Film</h2>
+            {{ data }}
             <hr>
             <div class="content row">
                 <div class="film_id c-6">
@@ -56,7 +50,8 @@ defineProps({
                     </span>
                 </div>
                 <div class="film_name c-12">
-                    <Input label="Film name" placeholder="Film name" :value="dataFilm.name"></Input>
+                    <Input label="Film name" placeholder="Film name" v-model.native="data.film_name" :value="dataFilm.film_name"></Input>
+                    <input type="text" v-model="data.film_name">
                 </div>
                 <div class="film_img c-12 row">
                     <div class="c-12">

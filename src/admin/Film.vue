@@ -1,5 +1,6 @@
 <template>
   <div class="film">
+    {{ films }}
     <h3 class="title">Film</h3>
     <div class="btn">
       <Button @click.native="addNew()">+ Add new</Button>
@@ -14,11 +15,11 @@
     </div>
 
     <div v-for="(film, index) in films" :key="index" class="table-td row">
-      <div class="c-1 t-j id">{{ film.id }}</div>
+      <div class="c-1 t-j id">{{ film.film_id }}</div>
       <div class="c-1 t-j img">
-        <img :src="film.img" alt="">
+        <img :src="film.film_img" alt="">
       </div>
-      <div class="c-3 t-j name-film">{{ film.title }}</div>
+      <div class="c-3 t-j name-film">{{ film.film_name }}</div>
       <div class="c-3 t-j tags-film row">
         <div class="tag" small v-for="tag in film.tags" :key="tag">
           {{ tag.tag_title }}
@@ -38,106 +39,55 @@
 <script setup>
 import Button from "@/components/Button.vue";
 import Add from '@/admin/Add.vue'
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useAdminStore } from '../stores/counter';
+import axios from "axios";
 
 const showAdd = ref(true)
 const adminStore = useAdminStore()
 const dataFilm = ref({
-  id: -1,
-  chap: '',
-  name: '',
-  img: '',
-  describe: '',
-  tags: [],
-  types: []
+  film_id: -1,
+  film_chap: '',
+  film_name: '',
+  film_img: '',
+  film_describe: '',
+  film_tags: [],
+  film_types: []
 
 })
 const addNew = () =>{
   adminStore.setShowAdd(true)
   const id = -1
-  dataFilm.value.id = null
-  dataFilm.value.chap = ""
-  dataFilm.value.name= ''
-  dataFilm.value.img = ""
-  dataFilm.value.describe = ""
-  dataFilm.value.tags = []
-  dataFilm.value.types = []
+  dataFilm.value.film_id = null
+  dataFilm.value.film_chap = ""
+  dataFilm.value.film_name= ""
+  dataFilm.value.film_img = ""
+  dataFilm.value.film_describe = ""
+  dataFilm.value.film_tags = []
+  dataFilm.value.film_types = []
 }
 // const editFilm = (id) =>{
 const editFilm = () =>{
   adminStore.setShowAdd(true)
   const id = 1
-  dataFilm.value.id = id
-  dataFilm.value.chap = "tap 10"
-  dataFilm.value.name= 'aaflkj'
-  dataFilm.value.img = ""
-  dataFilm.value.describe = "hay"
-  dataFilm.value.tags = ['tag 1', 'tag 2']
-  dataFilm.value.types = ['type 1']
+  dataFilm.value.film_id = id
+  dataFilm.value.film_chap = "tap 10"
+  dataFilm.value.film_name= 'aaflkj'
+  dataFilm.value.film_img = ""
+  dataFilm.value.film_describe = "hay"
+  dataFilm.value.film_tags = ['tag 1', 'tag 2']
+  dataFilm.value.film_types = ['type 1']
 }
-const films = ref([
-  {
-    id: 1,
-    title: "Title  sflkasf ",
-    tags: [
-      {
-        tag_id: 1,
-        tag_title: "tag 1",
-      },
-      {
-        tag_id: 2,
-        tag_title: "tag 2",
-      },
-    ],
-    chap: "Tap 1",
-  },
-  {
-    id: 1,
-    title: "Title  sflkasf ",
-    tags: [
-      {
-        tag_id: 1,
-        tag_title: "tag 1",
-      },
-      {
-        tag_id: 2,
-        tag_title: "tag 2",
-      },
-    ],
-    chap: "Tap 1",
-  },
-  {
-    id: 1,
-    title: "Title  sflkasf ",
-    tags: [
-      {
-        tag_id: 1,
-        tag_title: "tag 1",
-      },
-      {
-        tag_id: 2,
-        tag_title: "tag 2",
-      },
-    ],
-    chap: "Tap 1",
-  },
-  {
-    id: 1,
-    title: "Title  sflkasf ",
-    tags: [
-      {
-        tag_id: 1,
-        tag_title: "tag 1",
-      },
-      {
-        tag_id: 2,
-        tag_title: "tag 2",
-      },
-    ],
-    chap: "Tap 1",
-  },
-]);
+const films = ref([]);
+
+
+
+onMounted(() => {
+    axios
+    .get('http://127.0.0.1:4212/films')
+    .then(response => films.value = response.data)
+    .catch(error => console.log(error))
+  })
 </script>
 <style scoped lang="scss">
 .film {

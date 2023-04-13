@@ -12,7 +12,7 @@ export const useCounterStore = defineStore('counter', () => {
 })
 
 export const useAdminStore = defineStore('admin', () => {
-  const showAdd = ref(true)
+  const showAdd = ref(false)
   function setShowAdd(b){
     showAdd.value = b
   }
