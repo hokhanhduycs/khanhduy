@@ -7,14 +7,18 @@
     </ul>
     <input type="text" v-model="film.film_name">
     <p>The film is: {{ film.film_name }}</p>
+
+    <CustomInput v-model="message" /> {{ message }}
     </div>
   </template>
   
   <script setup>
   import axios from 'axios'
   import {  ref, onMounted  } from 'vue'
+  import CustomInput from './CustomInput.vue'
   
   const posts = ref([])
+  const message = ref('hello')
 
   const film = ref({
     film_id: -1,

@@ -1,3 +1,16 @@
+<script setup>
+defineProps({
+  label: String,
+  name: String,
+  modelValue: String,
+  full: Boolean,
+  placeholder: String
+})
+// defineProps(['modelValue'])
+defineEmits(['update:modelValue'])
+
+</script>
+
 <template>
   <div class="my-input" :class="{full}">
     <label>
@@ -6,23 +19,12 @@
     <input
       type="text"
       :name="name"
-      :value="value"
+      :value="modelValue"
       :placeholder="placeholder"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
-<script>
-export default {
-    props: {
-      label: String,
-      name: String,
-      value: String,
-      full: Boolean,
-      placeholder: String,
-
-  },
-};
-</script>
 <style lang="scss">
 .my-input{
   display: flex;

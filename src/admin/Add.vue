@@ -5,6 +5,7 @@ import Tag from "@/components/Tag.vue";
 import Input from '@/components/Input.vue'
 import Textarea from '@/components/Textarea.vue'
 import AutoComplete from '@/components/AutoComplete.vue'
+import CustomInput from '@/layouts/CustomInput.vue'
 
 import { useAdminStore } from '../stores/counter';
 
@@ -24,7 +25,9 @@ const type_film = ref([
     {id: 3, name: "Hanh dong"},
 ])
 const img_src = ref('./images/film/filmTest.jpg')
-
+const message = ref({
+    name: ''
+})
 const adminStore = useAdminStore()
 const propsd = defineProps({
     // showAdd: Boolean
@@ -50,8 +53,13 @@ const data = ref(propsd.dataFilm)
                     </span>
                 </div>
                 <div class="film_name c-12">
-                    <Input label="Film name" placeholder="Film name" v-model.native="data.film_name" :value="dataFilm.film_name"></Input>
-                    <input type="text" v-model="data.film_name">
+                    <Input label="Film name" placeholder="Film name" v-model="data.film_name"></Input>
+                    <!-- {{ data.film_name }} -->
+                    <CustomInput v-model="data.film_name"></CustomInput>
+                    <!-- asdfkljsda
+                    {{ data.film_name }}
+                    asdkfj -->
+                    <!-- <input type="text" v-model="data.film_name"> -->
                 </div>
                 <div class="film_img c-12 row">
                     <div class="c-12">
