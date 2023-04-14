@@ -12,8 +12,6 @@
             >{{ item }}</Chip>
           <!-- ============ -->
           <input
-            type="search"
-
             placeholder="Search"
             v-model="searchSelect"
           />

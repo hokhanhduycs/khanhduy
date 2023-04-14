@@ -1,5 +1,7 @@
 <script setup>
 import {ref} from 'vue'
+import axios from 'axios'
+
 import Button from "@/components/Button.vue";
 import Tag from "@/components/Tag.vue";
 import Input from '@/components/Input.vue'
@@ -9,10 +11,20 @@ import AutoComplete from '@/components/AutoComplete.vue'
 
 import { useAdminStore } from '../stores/counter';
 
-// import axios from 'axios'
+const adminStore = useAdminStore()
+const propsd = defineProps({
+    // showAdd: Boolean
+    dataFilm: Object
+})
 
 // const data = ref([])
-
+const film = ref([])
+const addFilm = () =>{
+    axios
+    .post('http://127.0.0.1:4212/film', propsd.dataFilm)
+    .then(res => film.value = res.data )
+    console.log(film.value);
+}
 
 const tag_film = ref([
     {id: 1, name: "thuyet minh"},
@@ -28,12 +40,12 @@ const img_src = ref('./images/film/filmTest.jpg')
 // const message = ref({
 //     name: ''
 // })
-const adminStore = useAdminStore()
-const propsd = defineProps({
-    // showAdd: Boolean
-    dataFilm: Object
-})
+
 const data = ref(propsd.dataFilm)
+const loadFile = () => {
+    // console.log(event.target.files[0].name);
+    propsd.dataFilm.film_img = event.target.files[0].name
+}
 </script>
 <template>
     <div v-show="adminStore.showAdd" class="add" >
@@ -54,12 +66,6 @@ const data = ref(propsd.dataFilm)
                 </div>
                 <div class="film_name c-12">
                     <Input label="Film name" placeholder="Film name" v-model="data.film_name"></Input>
-                    <!-- {{ data.film_name }} -->
-                    <!-- <CustomInput v-model="data.film_name"></CustomInput> -->
-                    <!-- asdfkljsda
-                    {{ data.film_name }}
-                    asdkfj -->
-                    <!-- <input type="text" v-model="data.film_name"> -->
                 </div>
                 <div class="film_img c-12 row">
                     <div class="c-12">
@@ -69,11 +75,11 @@ const data = ref(propsd.dataFilm)
                         <img :src="img_src" alt="image film">
                     </div>
                     <div class="c-8">
-                        <input type="file" accept="image/*" onchange="loadFile(event)">
+                        <input type="file" accept="image/*" @change="loadFile(event)">
                     </div>
                 </div>
                 <div class="film_describe c-12">
-                    <Textarea v-model="dataFilm.describe" label="Film describe" placeholder="Describe ..."></Textarea>
+                    <Textarea v-model="dataFilm.film_describe" label="Film describe" placeholder="Describe ..."></Textarea>
 
                 </div>
                 <div class="film_tags c-12">
@@ -100,7 +106,7 @@ const data = ref(propsd.dataFilm)
             <hr>
             <div class="btn" >
                 <Button @click.native="adminStore.setShowAdd(false)" danger>Close</Button>
-                <Button success>Save</Button>
+                <Button @click.native="addFilm()" success>Save</Button>
                 
             </div>
 
@@ -154,11 +160,8 @@ const data = ref(propsd.dataFilm)
                     padding: 0 16px;
                     img{
                         height: 80px;
-                        // width: 50px;
-                            
                         }
                 }
-          
             }
 
             .btn{
