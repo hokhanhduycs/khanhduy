@@ -5,7 +5,7 @@ import Tag from "@/components/Tag.vue";
 import Input from '@/components/Input.vue'
 import Textarea from '@/components/Textarea.vue'
 import AutoComplete from '@/components/AutoComplete.vue'
-import CustomInput from '@/layouts/CustomInput.vue'
+// import CustomInput from '@/layouts/CustomInput.vue'
 
 import { useAdminStore } from '../stores/counter';
 
@@ -25,9 +25,9 @@ const type_film = ref([
     {id: 3, name: "Hanh dong"},
 ])
 const img_src = ref('./images/film/filmTest.jpg')
-const message = ref({
-    name: ''
-})
+// const message = ref({
+//     name: ''
+// })
 const adminStore = useAdminStore()
 const propsd = defineProps({
     // showAdd: Boolean
@@ -77,13 +77,25 @@ const data = ref(propsd.dataFilm)
 
                 </div>
                 <div class="film_tags c-12">
-                    <AutoComplete :lists="tag_film" :selected="dataFilm.tags" label="Tags of Film"></AutoComplete>
+                    <AutoComplete 
+                    :lists="tag_film" 
+                    :selected="dataFilm.film_tags" 
+                    @updateSelected="selected = $event" 
+                    label="Tags of Film"
+                    ></AutoComplete>
 
                 </div>
+                {{ dataFilm.film_tags }}
                 <div class="film_types c-12"> 
-                    <AutoComplete :lists="type_film" :selected="dataFilm.types" label="Types of Film"></AutoComplete>
+                    <AutoComplete 
+                    :lists="type_film" 
+                    :selected="dataFilm.film_types" 
+                    label="Types of Film"
+                    @updateSelected="selected = $event" 
+                    ></AutoComplete>
 
                 </div>
+                {{ dataFilm.film_types }}
             </div>
             <hr>
             <div class="btn" >

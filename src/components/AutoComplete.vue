@@ -10,7 +10,6 @@
             :key="index"
             @click.native="delSelect(index)"
             >{{ item }}</Chip>
-
           <!-- ============ -->
           <input
             type="search"
@@ -18,7 +17,6 @@
             placeholder="Search"
             v-model="searchSelect"
           />
-          <!-- <div class="test">{{ searchSelect }}</div> -->
         </div>
       </div>
       <button class="c-1"
@@ -36,9 +34,7 @@
   </div>
 </template>
 <script setup>
-// import Button from "@/components/Button.vue";
  import Chip from "@/components/Chip.vue";
-
  import {computed, ref} from 'vue'
   const propsd = defineProps({
     label: String,
@@ -49,26 +45,14 @@
     selected: Array
 
   })
-//  const vFocus = {
-//   mounted: (el) => el.focus()
-// }
+  const emits = defineEmits(['updateSelected'])
   const showSelect = ref(false)
-//  const lists = ref(
-//   [
-//     { id: 1, name: 'Apple' },
-//     { id: 2, name: 'Banana' },
-//     { id: 3, name: 'Cherry' },
-//     { id: 4, name: 'Durian' },
-//     { id: 5, name: 'Elderberry' },
-//     { id: 6, name: "sfafsfa" },
-//     { id: 7, name: "adsffdas" }
-//   ]
-//   )
  const selectedT = computed(()=> propsd.selected)
  const addSelect = (value) =>{
    selectedT.value.push(value.name)
    showSelect.value = false
    searchSelect.value = ""
+   emits("updateSelected", selectedT.value)
    return selectedT
   }
   const delSelect = (value) =>{
