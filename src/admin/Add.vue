@@ -65,7 +65,11 @@ const loadFile = () => {
                     </span>
                 </div>
                 <div class="film_name c-12">
-                    <Input label="Film name" placeholder="Film name" v-model="data.film_name"></Input>
+                    <Input 
+                    label="Film name" 
+                    placeholder="Film name"
+                    v-model="data.film_name"
+                    ></Input>
                 </div>
                 <div class="film_img c-12 row">
                     <div class="c-12">

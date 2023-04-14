@@ -3,7 +3,7 @@
         
         <div class="c-6 type">
             <div class="table">
-                <h3 class="title">Film</h3>
+                <h3 class="title">Types</h3>
                 <div class="btn">
                     <Button>+ Add new</Button>
                 </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="c-6 tag">
             <div class="table">
-                <h3 class="title">Film</h3>
+                <h3 class="title">Tags</h3>
                 <div class="btn">
                     <Button>+ Add new</Button>
                 </div>
@@ -51,11 +51,13 @@
                 </div>
             </div>
         </div>
+        <AddTypeTag :title="'type'" :data="type"></AddTypeTag>
     </div>
 </template>
 
 <script setup>
 import Button from "@/components/Button.vue";
+import AddTypeTag from "./AddTypeTag.vue";
 import { ref } from "vue";
 const types = ref([
     {
@@ -86,6 +88,18 @@ const tags = ref([
         tag_film_name: "Tas 1"
     }
 ])
+const type = ref(
+    {
+        type_film_id: 1,
+        type_film_name: "asdfasf",
+    }
+)
+const tag = ref(
+    {
+        tag_film_id: null,
+        tag_film_name: ""
+    }
+)
 </script>
 
 <style scoped lang="scss">

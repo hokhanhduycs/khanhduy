@@ -35,6 +35,7 @@ defineEmits(['update:modelValue'])
     margin: 6px 8px;
     font-size: 15px;
     font-weight: 700;
+    text-transform: capitalize;
   }
   input{
     color: #495057;
@@ -43,6 +44,7 @@ defineEmits(['update:modelValue'])
     border-radius: 6px;
     line-height: 30px;
     padding: 4px 16px;
+    text-transform: capitalize;
   }
   input:not(:placeholder-shown),
   input:focus{

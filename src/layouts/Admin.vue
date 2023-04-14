@@ -1,8 +1,8 @@
 <template>
   <div class="admin">
     <MenuAdmin></MenuAdmin>
-    <Film></Film>
-    <!-- <TypeTag></TypeTag> -->
+    <!-- <Film></Film> -->
+    <TypeTag></TypeTag>
     <NavAdmin></NavAdmin>
     <!-- <Add></Add> -->
   </div>
