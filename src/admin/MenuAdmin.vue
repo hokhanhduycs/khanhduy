@@ -2,26 +2,38 @@
     <div class="menu ">
         <h3 class="title">Home</h3>
         <div class="menu-list">
-            <div class="menu-item">
+            <div @click="show = 'film'"
+            :class="{activate: show == 'film'}"
+            class="menu-item">
                 <font-awesome-icon icon="fa-solid fa-film"/>
                 Film
             </div>
-            <div class="menu-item">
+            <div @click="show = 'chap'" 
+            :class="{activate: show == 'chap'}"
+            class="menu-item">
                 <font-awesome-icon icon="fa-solid fa-file-video"/>
                 Chap
             </div>
-            <div class="menu-item">
+            <div @click="show = 'typetag'"
+            :class="{activate: show == 'typetag'}"
+            class="menu-item">
                 <font-awesome-icon icon="fa-solid fa-tag"/>
                 Type/Tag
             </div>
         </div>
+
+        
         
     </div>
+    <Film v-show="show == 'film'"></Film>
+    <TypeTag v-show="show == 'typetag'"></TypeTag>
 </template>
-<script>
-export default {
-    
-}
+<script setup>
+import Film from '@/admin/Film.vue'
+import TypeTag from '@/admin/TypeTag.vue'
+import {ref} from "vue"
+
+const show = ref('film')
 </script>
 <style scoped lang="scss">
     .menu{
@@ -57,6 +69,12 @@ export default {
                 svg{
                     margin-right: 16px;
                 }
+
+                
+            }
+            .activate{
+                box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+                background-color: var(--primary)
             }
         }
     }

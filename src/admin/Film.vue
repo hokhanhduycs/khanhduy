@@ -1,6 +1,6 @@
 <template>
   <div class="film">
-    {{ films }}
+    <!-- {{ films }} -->
     <h3 class="title">Film</h3>
     <div class="btn">
       <Button @click.native="addNew()">+ Add new</Button>
@@ -33,7 +33,7 @@
         <div class="del"><font-awesome-icon icon="fa-solid fa-trash" /></div>
       </div>
     </div>
-    <Add :showAdd="showAdd" :dataFilm="dataFilm"></Add>
+    <Add :dataFilm="dataFilm"></Add>
   </div>
 </template>
 <script setup>
@@ -43,7 +43,6 @@ import { onMounted, ref } from "vue";
 import { useAdminStore } from '../stores/counter';
 import axios from "axios";
 
-const showAdd = ref(true)
 const adminStore = useAdminStore()
 const dataFilm = ref({
   film_id: -1,

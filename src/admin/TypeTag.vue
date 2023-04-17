@@ -1,166 +1,166 @@
 <template>
-    <div class="typetag row">
-        
-        <div class="c-6 type">
-            <div class="table">
-                <h3 class="title">Types</h3>
-                <div class="btn">
-                    <Button>+ Add new</Button>
-                </div>
-                <div class="table-th row">
-                    <div class="c-2 t-j id">ID</div>
-                    <div class="c-7 t-j name-film">Name Type</div>
-                    <div class="c-3 t-j control">Control</div>
-                </div>
-                <div v-for="(type, index) in types" :key="index" class="table-td row">
-                    <div class="c-2 t-j id">{{ type.type_film_id }}</div>
-                    <div class="c-7 t-j name-film">{{ type.type_film_name }}</div>
-                    <div class="c-3 t-j control">
-                        <div class="edit">
-                            <font-awesome-icon icon="fa-solid fa-pen-to-square"
-                            /></div>
-                            <div class="del"
-                            ><font-awesome-icon icon="fa-solid fa-trash"
-                            /></div>
-                    </div>
-                </div>
-            </div>
+  <div class="typetag row">
+    <div class="c-6 type">
+      <div class="table">
+        <h3 class="title">Types</h3>
+        <div class="btn">
+          <Button @click.native="addNewType()">+ Add new</Button>
         </div>
-        <div class="c-6 tag">
-            <div class="table">
-                <h3 class="title">Tags</h3>
-                <div class="btn">
-                    <Button>+ Add new</Button>
-                </div>
-                <div class="table-th row">
-                    <div class="c-2 t-j id">ID</div>
-                    <div class="c-7 t-j name-film">Name Tag</div>
-                    <div class="c-3 t-j control">Control</div>
-                </div>
-                <div v-for="(tag, index) in tags" :key="index" class="table-td row">
-                    <div class="c-2 t-j id">{{ tag.tag_film_id }}</div>
-                    <div class="c-7 t-j name-film">{{ tag.tag_film_name }}</div>
-                    <div class="c-3 t-j control">
-                        <div class="edit">
-                            <font-awesome-icon icon="fa-solid fa-pen-to-square"
-                            /></div>
-                            <div class="del"
-                            ><font-awesome-icon icon="fa-solid fa-trash"
-                            /></div>
-                    </div>
-                </div>
-            </div>
+        <div class="table-th row">
+          <div class="c-2 t-j id">ID</div>
+          <div class="c-7 t-j name-film">Name Type</div>
+          <div class="c-3 t-j control">Control</div>
         </div>
-        <AddTypeTag :title="'type'" :data="type"></AddTypeTag>
+        <div v-for="(type, index) in types" :key="index" class="table-td row">
+          <div class="c-2 t-j id">{{ type.type_film_id }}</div>
+          <div class="c-7 t-j name-film">{{ type.type_film_name }}</div>
+          <div class="c-3 t-j control">
+            <div class="edit">
+              <font-awesome-icon icon="fa-solid fa-pen-to-square" />
+            </div>
+            <div class="del">
+              <font-awesome-icon icon="fa-solid fa-trash" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="c-6 tag">
+      <div class="table">
+        <h3 class="title">Tags</h3>
+        <div class="btn">
+          <Button @click.native="addNewTag()">+ Add new</Button>
+        </div>
+        <div class="table-th row">
+          <div class="c-2 t-j id">ID</div>
+          <div class="c-7 t-j name-film">Name Tag</div>
+          <div class="c-3 t-j control">Control</div>
+        </div>
+        <div v-for="(tag, index) in tags" :key="index" class="table-td row">
+          <div class="c-2 t-j id">{{ tag.tag_film_id }}</div>
+          <div class="c-7 t-j name-film">{{ tag.tag_film_name }}</div>
+          <div class="c-3 t-j control">
+            <div class="edit">
+              <font-awesome-icon icon="fa-solid fa-pen-to-square" />
+            </div>
+            <div class="del">
+              <font-awesome-icon icon="fa-solid fa-trash" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <AddTypeTag v-show="showAddTypeTag.showAddTypeTag" :title="typeData" :data="data" @updateData="data = $event"></AddTypeTag>
+  </div>
 </template>
 
 <script setup>
 import Button from "@/components/Button.vue";
 import AddTypeTag from "./AddTypeTag.vue";
-import { ref } from "vue";
-const types = ref([
-    {
-        type_film_id: 1,
-        type_film_name: "Test hh",
-    },
-    {
-        type_film_id: 1,
-        type_film_name: "Test hh",
-    },
-    {
-        type_film_id: 1,
-        type_film_name: "Test hh",
-    }
+import { onMounted, ref } from "vue";
+import axios from "axios";
 
-])
-const tags = ref([
-    {
-        tag_film_id: 1,
-        tag_film_name: "Tag 1"
-    },
-    {
-        tag_film_id: 1,
-        tag_film_name: "Tas 1"
-    },
-    {
-        tag_film_id: 1,
-        tag_film_name: "Tas 1"
-    }
-])
-const type = ref(
-    {
-        type_film_id: 1,
-        type_film_name: "asdfasf",
-    }
-)
-const tag = ref(
-    {
-        tag_film_id: null,
-        tag_film_name: ""
-    }
-)
+import { addTypeTagStore } from "../stores/counter";
+
+const showAddTypeTag = addTypeTagStore();
+
+const types = ref([]);
+onMounted(() =>{
+    axios
+    .get('http://127.0.0.1:4212/type_films')
+    .then(res => types.value = res.data)
+})
+const tags = ref([]);
+onMounted(() =>{
+    axios
+    .get('http://127.0.0.1:4212/tag_films')
+    .then(res => tags.value = res.data)
+})
+const type = ref({
+  type_film_id: 1,
+  type_film_name: "asdfasf",
+});
+const tag = ref({
+  tag_film_id: null,
+  tag_film_name: "",
+});
+const data = ref({})
+const typeData = ref('')
+
+const addNewType = () =>{
+    showAddTypeTag.setShowAddTypeTag(true)
+    type.value.type_film_id = null,
+    type.value.type_film_name = ''
+    data.value = type.value
+    typeData.value = 'type'
+}
+const addNewTag = () =>{
+    showAddTypeTag.setShowAddTypeTag(true)
+    type.value.tag_film_id = null,
+    type.value.tag_film_name = ''
+    data.value = tag.value
+    typeData.value = 'tag'
+}
 </script>
 
 <style scoped lang="scss">
-    .typetag{
-        position: relative;
-        width: 100%;
-        margin: 18px 0;
-        .type, .tag{
-            .table{
-                margin-right: 18px;
-                background-color: #fff;
-                border-radius: 10px;    
-                box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-                min-height: calc(100vh - 120px);
-                padding: 12px;
-                .title {
-                    margin-bottom: 8px;
-                    font-size: 18px;
-                }
-                .btn {
-                    margin: 8px 16px;
-                }
-                .table-th{
-                    background-color: #e0e0e0;
-                    padding: 8px;
-                    border-radius: 8px;
-                    .t-j{
-                        font-weight: 600;
-                    }
-                }
+.typetag {
+  position: relative;
+  width: 100%;
+  margin: 18px 0;
+  .type,
+  .tag {
+    .table {
+      margin-right: 18px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+      min-height: calc(100vh - 120px);
+      padding: 12px;
+      .title {
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+      .btn {
+        margin: 8px 16px;
+      }
+      .table-th {
+        background-color: #e0e0e0;
+        padding: 8px;
+        border-radius: 8px;
+        .t-j {
+          font-weight: 600;
+        }
+      }
 
-                .t-j{
-                    display: flex;
-                    justify-content: center;
-                }
-
-                .table-td {
-    padding: 8px;
-    border-bottom: solid 1px #ccc;
-    min-width: 500px;
-    .id {
-      font-weight: 600;
-    }
-    .t-j{
-        overflow: hidden;
+      .t-j {
         display: flex;
         justify-content: center;
-        align-items: center;
-        .edit{
+      }
+
+      .table-td {
+        padding: 8px;
+        border-bottom: solid 1px #ccc;
+        min-width: 500px;
+        .id {
+          font-weight: 600;
+        }
+        .t-j {
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .edit {
             color: #22c55e;
             margin: 0 12px;
-        }
-        .del{
+          }
+          .del {
             color: #ce1d1d;
             padding: 0 12px;
+          }
         }
+      }
     }
   }
-            }
-
-        }
-    }
-
+}
 </style>

@@ -2,7 +2,7 @@
   <div class="admin">
     <MenuAdmin></MenuAdmin>
     <!-- <Film></Film> -->
-    <TypeTag></TypeTag>
+    <!-- <TypeTag></TypeTag> -->
     <NavAdmin></NavAdmin>
     <!-- <Add></Add> -->
   </div>

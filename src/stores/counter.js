@@ -18,3 +18,11 @@ export const useAdminStore = defineStore('admin', () => {
   }
   return{showAdd, setShowAdd}
 })
+
+export const addTypeTagStore = defineStore('addTypeTag',  () =>{
+  const showAddTypeTag = ref(false)
+  function setShowAddTypeTag(b){
+    showAddTypeTag.value = b
+  }
+  return {showAddTypeTag, setShowAddTypeTag}
+})
