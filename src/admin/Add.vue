@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
 
 import Button from "@/components/Button.vue";
@@ -26,16 +26,19 @@ const addFilm = () => {
   console.log(film.value);
 };
 
-const tag_film = ref([
-  { id: 1, name: "thuyet minh" },
-  { id: 2, name: "vietsub" },
-  { id: 3, name: "new" },
-]);
-const type_film = ref([
-  { id: 1, name: "Hoat hinh" },
-  { id: 2, name: "Thuyet minh" },
-  { id: 3, name: "Hanh dong" },
-]);
+const tag_film = ref([]);
+
+onMounted(() =>{
+  axios
+  .get("http://127.0.0.1:4212/tag_films")
+  .then((res) => (tag_film.value = res.data));
+})
+const type_film = ref([]);
+onMounted(() =>{
+  axios
+  .get("http://127.0.0.1:4212/type_films")
+  .then((res) => (type_film.value = res.data));
+})
 const img_src = ref("./images/film/filmTest.jpg");
 // const message = ref({
 //     name: ''
