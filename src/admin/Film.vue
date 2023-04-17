@@ -21,11 +21,13 @@
       </div>
       <div class="c-3 t-j name-film">{{ film.film_name }}</div>
       <div class="c-3 t-j tags-film row">
-        <div class="tag" small v-for="tag in film.tags" :key="tag">
+        {{ film.film_types }}à
+        <div class="tag" small v-for="tag in film.film_tags" :key="tag">
           {{ tag.tag_title }}
         </div>
+
       </div>
-      <div class="c-2 t-j current-chap">{{ film.chap }}</div>
+      <div class="c-2 t-j current-chap">{{ film.film_chaps }}</div>
       <div class="c-2 t-j control row">
         <div class="edit" @click="editFilm()">
           <font-awesome-icon icon="fa-solid fa-pen-to-square" />
@@ -149,10 +151,12 @@ onMounted(() => {
       .edit {
         color: #22c55e;
         margin: 0 12px;
+        cursor: pointer;
       }
       .del {
         color: #ce1d1d;
         padding: 0 12px;
+        cursor: pointer;
       }
     }
   }

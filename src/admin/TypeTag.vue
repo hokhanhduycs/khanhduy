@@ -153,10 +153,12 @@ const addNewTag = () =>{
           .edit {
             color: #22c55e;
             margin: 0 12px;
+            cursor: pointer;
           }
           .del {
             color: #ce1d1d;
             padding: 0 12px;
+            cursor: pointer;
           }
         }
       }
