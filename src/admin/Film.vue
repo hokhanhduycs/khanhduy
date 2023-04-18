@@ -29,10 +29,10 @@
       </div>
       <div class="c-2 t-j current-chap">{{ film.film_chaps }}</div>
       <div class="c-2 t-j control row">
-        <div class="edit" @click="editFilm()">
+        <div class="edit" @click="editFilm(film.film_id)">
           <font-awesome-icon icon="fa-solid fa-pen-to-square" />
         </div>
-        <div class="del"><font-awesome-icon icon="fa-solid fa-trash" /></div>
+        <div class="del" @click="delFilm(film.film_id)"><font-awesome-icon icon="fa-solid fa-trash" /></div>
       </div>
     </div>
     <Add :dataFilm="dataFilm"></Add>
@@ -68,16 +68,25 @@ const addNew = () =>{
   dataFilm.value.film_types = []
 }
 // const editFilm = (id) =>{
-const editFilm = () =>{
+const editFilm = (id) =>{
   adminStore.setShowAdd(true)
-  const id = 1
-  dataFilm.value.film_id = id
-  dataFilm.value.film_chap = "tap 10"
-  dataFilm.value.film_name= 'aaflkj'
-  dataFilm.value.film_img = ""
-  dataFilm.value.film_describe = "hay"
-  dataFilm.value.film_tags = ['tag 1', 'tag 2']
-  dataFilm.value.film_types = ['type 1']
+  
+  axios
+  .get(`http://127.0.0.1:4212/film/${id}`)
+  .then(res => {
+    dataFilm.value.film_id = res.data.film_id,
+    dataFilm.value.film_name = res.data.film_name,
+    dataFilm.value.film_img = res.data.film_img,
+    dataFilm.value.film_chap = res.data.film_chap,
+    dataFilm.value.film_describe = res.data.film_describe,
+    dataFilm.value.film_tags = res.data.film_tags,
+    dataFilm.value.film_types = res.data.film_types
+  })
+}
+const delFilm = (id) =>{
+  axios
+  .delete(`http://127.0.0.1:4212/film/${id}`)
+  .then(res =>{console.log('da xoa thanh cong');})
 }
 const films = ref([]);
 

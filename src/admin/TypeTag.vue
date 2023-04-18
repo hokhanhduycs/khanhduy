@@ -15,10 +15,10 @@
           <div class="c-2 t-j id">{{ type.type_film_id }}</div>
           <div class="c-7 t-j name-film">{{ type.type_film_name }}</div>
           <div class="c-3 t-j control">
-            <div class="edit">
+            <div class="edit" @click="editType(type.type_film_id)">
               <font-awesome-icon icon="fa-solid fa-pen-to-square" />
             </div>
-            <div class="del">
+            <div class="del" @click="delType(type.type_film_id)">
               <font-awesome-icon icon="fa-solid fa-trash" />
             </div>
           </div>
@@ -40,17 +40,22 @@
           <div class="c-2 t-j id">{{ tag.tag_film_id }}</div>
           <div class="c-7 t-j name-film">{{ tag.tag_film_name }}</div>
           <div class="c-3 t-j control">
-            <div class="edit">
+            <div class="edit" @click="editTag(tag.tag_film_id)">
               <font-awesome-icon icon="fa-solid fa-pen-to-square" />
             </div>
-            <div class="del">
+            <div class="del" @click="delTag(tag.tag_film_id)">
               <font-awesome-icon icon="fa-solid fa-trash" />
             </div>
           </div>
         </div>
       </div>
     </div>
-    <AddTypeTag v-show="showAddTypeTag.showAddTypeTag" :title="typeData" :data="data" @updateData="data = $event"></AddTypeTag>
+    <AddTypeTag
+      v-show="showAddTypeTag.showAddTypeTag"
+      :title="typeData"
+      :data="data"
+      @updateData="data = $event"
+    ></AddTypeTag>
   </div>
 </template>
 
@@ -65,17 +70,17 @@ import { addTypeTagStore } from "../stores/counter";
 const showAddTypeTag = addTypeTagStore();
 
 const types = ref([]);
-onMounted(() =>{
-    axios
-    .get('http://127.0.0.1:4212/type_films')
-    .then(res => types.value = res.data)
-})
+onMounted(() => {
+  axios
+    .get("http://127.0.0.1:4212/type_films")
+    .then((res) => (types.value = res.data));
+});
 const tags = ref([]);
-onMounted(() =>{
-    axios
-    .get('http://127.0.0.1:4212/tag_films')
-    .then(res => tags.value = res.data)
-})
+onMounted(() => {
+  axios
+    .get("http://127.0.0.1:4212/tag_films")
+    .then((res) => (tags.value = res.data));
+});
 const type = ref({
   type_film_id: 1,
   type_film_name: "asdfasf",
@@ -84,23 +89,51 @@ const tag = ref({
   tag_film_id: null,
   tag_film_name: "",
 });
-const data = ref({})
-const typeData = ref('')
+const data = ref({});
+const typeData = ref("");
 
-const addNewType = () =>{
-    showAddTypeTag.setShowAddTypeTag(true)
-    type.value.type_film_id = null,
-    type.value.type_film_name = ''
-    data.value = type.value
-    typeData.value = 'type'
-}
-const addNewTag = () =>{
-    showAddTypeTag.setShowAddTypeTag(true)
-    type.value.tag_film_id = null,
-    type.value.tag_film_name = ''
-    data.value = tag.value
-    typeData.value = 'tag'
-}
+const addNewType = () => {
+  showAddTypeTag.setShowAddTypeTag(true);
+  (type.value.type_film_id = null), (type.value.type_film_name = "");
+  data.value = type.value;
+  typeData.value = "type";
+};
+const addNewTag = () => {
+  showAddTypeTag.setShowAddTypeTag(true);
+  (tag.value.tag_film_id = null), (tag.value.tag_film_name = "");
+  data.value = tag.value;
+  typeData.value = "tag";
+};
+const editTag = (id) => {
+  showAddTypeTag.setShowAddTypeTag(true);
+  axios.get(`http://127.0.0.1:4212/tag_film/${id}`).then((res) => {
+    (tag.value.tag_film_id = res.data.tag_film_id),
+      (tag.value.tag_film_name = res.data.tag_film_name);
+  });
+  data.value = tag.value;
+  typeData.value = "tag";
+};
+const editType = (id) => {
+  showAddTypeTag.setShowAddTypeTag(true);
+  // console.log(id);
+  axios.get(`http://127.0.0.1:4212/type_film/${id}`).then((res) => {
+    (type.value.type_film_id = res.data.type_film_id),
+      (type.value.type_film_name = res.data.type_film_name);
+  });
+  data.value = type.value;
+  typeData.value = "type";
+};
+
+const delTag = (id) => {
+  axios
+    .delete(`http://127.0.0.1:4212/tag_film/${id}`)
+    .then((res) => console.log("da xoa tag"));
+};
+const delType = (id) => {
+  axios
+    .delete(`http://127.0.0.1:4212/type_film/${id}`)
+    .then((res) => console.log("da xoa type"));
+};
 </script>
 
 <style scoped lang="scss">
