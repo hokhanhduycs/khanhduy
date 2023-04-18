@@ -27,7 +27,7 @@
       <li v-for="(item, index) in filterList" 
       :key="index"
       @click="addSelect(item)"
-      >{{ item.name }}</li>
+      >{{ item[`${type}_film_name`] }}</li>
     </ul>
   </div>
 </template>
@@ -40,14 +40,15 @@
     value: String,
     full: Boolean,
     lists: Object,
-    selected: Array
+    selected: Array,
+    type: String
 
   })
   const emits = defineEmits(['updateSelected'])
   const showSelect = ref(false)
  const selectedT = computed(()=> propsd.selected)
  const addSelect = (value) =>{
-   selectedT.value.push(value.name)
+   selectedT.value.push(value[`${propsd.type}_film_name`])
    showSelect.value = false
    searchSelect.value = ""
    emits("updateSelected", selectedT.value)
@@ -69,7 +70,8 @@
   // console.log(propsd.label)
   // return propsd.lists
   return propsd.lists.filter(list => {
-    return list.name.toLowerCase().includes(searchSelect.value.toLowerCase())
+    // console.log(propsd.type, list['tag_film_name']);
+    return list[`${propsd.type}_film_name`].toLowerCase().includes(searchSelect.value.toLowerCase())
   })
  })
 

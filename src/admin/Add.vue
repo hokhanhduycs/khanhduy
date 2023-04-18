@@ -94,19 +94,21 @@ const loadFile = () => {
         </div>
         <div class="film_tags c-12">
           <AutoComplete
+            :type="'tag'"
             :lists="tag_film"
             :selected="dataFilm.film_tags"
-            @updateSelected="selected = $event"
+            @updateSelected="dataFilm.film_tags = $event"
             label="Tags of Film"
           ></AutoComplete>
         </div>
         {{ dataFilm.film_tags }}
         <div class="film_types c-12">
           <AutoComplete
+            :type="'type'"
             :lists="type_film"
             :selected="dataFilm.film_types"
             label="Types of Film"
-            @updateSelected="selected = $event"
+            @updateSelected="dataFilm.film_types = $event"
           ></AutoComplete>
         </div>
         {{ dataFilm.film_types }}
