@@ -20,20 +20,20 @@
                 <font-awesome-icon icon="fa-solid fa-tag"/>
                 Type/Tag
             </div>
-        </div>
-
-        
+        </div>   
         
     </div>
     <Film v-show="show == 'film'"></Film>
     <TypeTag v-show="show == 'typetag'"></TypeTag>
+    <Chap v-show="show == 'chap'"></Chap>
 </template>
 <script setup>
 import Film from '@/admin/Film.vue'
 import TypeTag from '@/admin/TypeTag.vue'
+import Chap from '@/admin/Chap.vue'
 import {ref} from "vue"
 
-const show = ref('film')
+const show = ref('chap')
 </script>
 <style scoped lang="scss">
     .menu{
