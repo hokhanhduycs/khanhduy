@@ -5,17 +5,15 @@
         <div class="title">Thư viên</div>
         <div class="content">
         
-
           <div v-for="index in list" :key="index" class="item">
             <div class="img">
               <img src="" alt="">
             </div>
             <div class="text">
-              askfj  asldkfj jsfda
+              Autodesk.Products.2018.Keygen.Only_3ds.Max
             </div>
           </div>
           
-
         </div>
       </div>
     </div>
