@@ -11,7 +11,7 @@
           <div class="c-7 t-j name-film">Name Type</div>
           <div class="c-3 t-j control">Control</div>
         </div>
-        <div v-for="(type, index) in types" :key="index" class="table-td row">
+        <div v-for="(type, index) in typeFilmsStore.type_films" :key="index" class="table-td row">
           <div class="c-2 t-j id">{{ type.type_film_id }}</div>
           <div class="c-7 t-j name-film">{{ type.type_film_name }}</div>
           <div class="c-3 t-j control">
@@ -36,7 +36,7 @@
           <div class="c-7 t-j name-film">Name Tag</div>
           <div class="c-3 t-j control">Control</div>
         </div>
-        <div v-for="(tag, index) in tags" :key="index" class="table-td row">
+        <div v-for="(tag, index) in tagFilmsStore.tag_films" :key="index" class="table-td row">
           <div class="c-2 t-j id">{{ tag.tag_film_id }}</div>
           <div class="c-7 t-j name-film">{{ tag.tag_film_name }}</div>
           <div class="c-3 t-j control">
@@ -62,25 +62,18 @@
 <script setup>
 import Button from "@/components/Button.vue";
 import AddTypeTag from "./AddTypeTag.vue";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
+import { useTagFilmsStore } from "../stores/tag-films";
+import { useTypeFilmsStore } from "../stores/type-films";
 import axios from "axios";
 
 import { addTypeTagStore } from "../stores/counter";
 
 const showAddTypeTag = addTypeTagStore();
+const tagFilmsStore = useTagFilmsStore();
+const typeFilmsStore = useTypeFilmsStore();
 
-const types = ref([]);
-onMounted(() => {
-  axios
-    .get("http://127.0.0.1:4212/type_films")
-    .then((res) => (types.value = res.data));
-});
-const tags = ref([]);
-onMounted(() => {
-  axios
-    .get("http://127.0.0.1:4212/tag_films")
-    .then((res) => (tags.value = res.data));
-});
+
 const type = ref({
   type_film_id: 1,
   type_film_name: "asdfasf",
@@ -125,22 +118,10 @@ const editType = (id) => {
 };
 
 const delTag = (id) => {
-  axios
-    .delete(`http://127.0.0.1:4212/tag_film/${id}`)
-    .then((res) => console.log(""));
-
-  let i = tags.value.map(item => item.tag_film_id).indexOf(id)
-  tags.value.splice(i, 1)
-  // console.log(i);
- 
+  tagFilmsStore.del(id)
 };
 const delType = (id) => {
-  axios
-    .delete(`http://127.0.0.1:4212/type_film/${id}`)
-    .then((res) => console.log("da xoa type"));
-
-  let i = types.value.map(item => item.type_film_id).indexOf(id)
-  types.value.splice(i, 1)
+  typeFilmsStore.del(id)
 };
 </script>
 

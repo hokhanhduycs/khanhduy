@@ -14,7 +14,7 @@ export const useFilmsStore = defineStore('film', () => {
     .delete(`http://127.0.0.1:4212/film/${id}`)
     .then(res =>{console.log('da xoa thanh cong');})
 
-    const i = films.value.map(item => item.film_film_id).indexOf(id)
+    const i = films.value.map(item => item.film_id).indexOf(id)
     films.value.splice(i, 1)
   }
 

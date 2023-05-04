@@ -33,7 +33,7 @@ import TypeTag from '@/admin/TypeTag.vue'
 import Chap from '@/admin/Chap.vue'
 import {ref} from "vue"
 
-const show = ref('film')
+const show = ref('typetag')
 </script>
 <style scoped lang="scss">
     .menu{

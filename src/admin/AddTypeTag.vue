@@ -7,8 +7,13 @@ import Button from "@/components/Button.vue";
 import Input from "@/components/Input.vue";
 
 import { addTypeTagStore } from "../stores/counter";
+import { useTagFilmsStore } from "../stores/tag-films";
+import { useTypeFilmsStore } from "../stores/type-films";
+
 
 const showAddTypeTag = addTypeTagStore();
+const tagFilmsStore = useTagFilmsStore();
+const typeFilmsStore = useTypeFilmsStore();
 const propsd = defineProps({
   // showAdd: Boolean
   // dataFilm: Object
@@ -20,19 +25,15 @@ const emits = defineEmits(['updateData'])
 
 
 const addType = () => {
-  axios
-    .post("http://127.0.0.1:4212/type_film", propsd.data)
-    .then((res) => emits("updateData", res.data));
+  typeFilmsStore.add(propsd.data)
+  showAddTypeTag.setShowAddTypeTag(false)
 };
 const close = () => {
-    showAddTypeTag.setShowAddTypeTag(false)
+  showAddTypeTag.setShowAddTypeTag(false)
 }
 const addTag = () => {
-  axios
-    .post("http://127.0.0.1:4212/tag_film", propsd.data)
-    .then((res) => console.log(res.data));
-
-  console.log("gffsgd");
+  tagFilmsStore.add(propsd.data)
+  showAddTypeTag.setShowAddTypeTag(false)
 };
 </script>
 <template>
