@@ -17,16 +17,7 @@ const propsd = defineProps({
 });
 
 const emits = defineEmits(['updateData'])
-const tag_film = ref([
-  { id: 1, name: "thuyet minh" },
-  { id: 2, name: "vietsub" },
-  { id: 3, name: "new" },
-]);
-const type_film = ref([
-  { id: 1, name: "Hoat hinh" },
-  { id: 2, name: "Thuyet minh" },
-  { id: 3, name: "Hanh dong" },
-]);
+
 
 const addType = () => {
   axios
@@ -40,6 +31,8 @@ const addTag = () => {
   axios
     .post("http://127.0.0.1:4212/tag_film", propsd.data)
     .then((res) => console.log(res.data));
+
+  console.log("gffsgd");
 };
 </script>
 <template>

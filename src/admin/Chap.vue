@@ -1,77 +1,37 @@
 <template>
-  <div class="labiry">
-    <div class="bg-war">
-      <div class="war">
-        <div class="title">Thư viên</div>
-        <div class="content">
-        
-          <div v-for="index in list" :key="index" class="item">
-            <div class="img">
-              <img src="" alt="">
-            </div>
-            <div class="text">
-              Autodesk.Products.2018.Keygen.Only_3ds.Max
-            </div>
-          </div>
-          
-        </div>
-      </div>
+  <div class="chap">
+    <h3 class="title">Chap</h3>
+    <div class="btn">
+      <Button @click.native="addNew()">+ Add new</Button>
+    </div>
+    <div class="table-th row">
+      <div class="c-1 t-j id">ID</div>
+      <div class="c-1 t-j img">Image</div>
+      <div class="c-3 t-j name-film">Name Film</div>
+      <div class="c-3 t-j tags-film">Tags Film</div>
+      <div class="c-2 t-j current-chap">Current Chap</div>
+      <div class="c-2 t-j control">Control</div>
     </div>
   </div>
 </template>
 <script setup>
-import {ref} from "vue"
-const list = ref([1, 2])
+  import Button from "@/components/Button.vue";
 
+  const addNew = () =>{
+
+  }
 </script>
-<style scoped>
-  .labiry{
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #c9c9c9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .bg-war{
-    background: #6ee3f3ad;
-    padding: 8px;
-  }
-  .war{
-    background: #71d7ff;
-    width: 1224px;
-    height: 600px;
-    position: relative;
-    overflow: hidden;
-  }
-  .title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #3ef8ef;
-    height: 45px;
-    margin-bottom: 8px;
-    font-size: 22px;
-    font-weight: 600;
-  }
-  .content{
-    /* background-color: #413ef8; */
-    /* height: calc(100% - 53px); */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    /* overflow-y: scroll; */
-  }
-  .item{
-    width: 300px;
-    height: 220px;
-    background-color: red;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
+<style lang="scss" scoped>
+  .chap {
+  background-color: #47d4f752;
+  min-height: calc(100vh - 120px);
+  position: relative;
+  width: 100%;
+  margin: 18px;
+  background-color: #ffffff;
+  min-height: 97%;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 12px;
   }
 </style>

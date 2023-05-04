@@ -1,6 +1,6 @@
 <template>
   <div class="film">
-    <!-- {{ filmsStore.films }} -->
+    <!-- {{ films }} -->
     <h3 class="title">Film</h3>
     <div class="btn">
       <Button @click.native="addNew()">+ Add new</Button>
@@ -14,7 +14,7 @@
       <div class="c-2 t-j control">Control</div>
     </div>
 
-    <div v-for="(film, index) in filmsStore.films" :key="index" class="table-td row">
+    <div v-for="(film, index) in films" :key="index" class="table-td row">
       <div class="c-1 t-j id">{{ film.film_id }}</div>
       <div class="c-1 t-j img">
         <img :src="film.film_img" alt="">
@@ -43,11 +43,9 @@ import Button from "@/components/Button.vue";
 import Add from '@/admin/Add.vue'
 import { onMounted, ref } from "vue";
 import { useAdminStore } from '../stores/counter';
-import { useFilmsStore } from '../stores/films';
 import axios from "axios";
 
 const adminStore = useAdminStore()
-const filmsStore = useFilmsStore()
 const dataFilm = ref({
   film_id: -1,
   film_chap: '',
@@ -86,9 +84,20 @@ const editFilm = (id) =>{
   })
 }
 const delFilm = (id) =>{
-  filmsStore.del(id)
+  axios
+  .delete(`http://127.0.0.1:4212/film/${id}`)
+  .then(res =>{console.log('da xoa thanh cong');})
 }
+const films = ref([]);
 
+
+
+onMounted(() => {
+    axios
+    .get('http://127.0.0.1:4212/films')
+    .then(response => films.value = response.data)
+    .catch(error => console.log(error))
+  })
 </script>
 <style scoped lang="scss">
 .film {

@@ -127,12 +127,20 @@ const editType = (id) => {
 const delTag = (id) => {
   axios
     .delete(`http://127.0.0.1:4212/tag_film/${id}`)
-    .then((res) => console.log("da xoa tag"));
+    .then((res) => console.log(""));
+
+  let i = tags.value.map(item => item.tag_film_id).indexOf(id)
+  tags.value.splice(i, 1)
+  // console.log(i);
+ 
 };
 const delType = (id) => {
   axios
     .delete(`http://127.0.0.1:4212/type_film/${id}`)
     .then((res) => console.log("da xoa type"));
+
+  let i = types.value.map(item => item.type_film_id).indexOf(id)
+  types.value.splice(i, 1)
 };
 </script>
 

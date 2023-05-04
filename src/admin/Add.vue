@@ -10,35 +10,40 @@ import AutoComplete from "@/components/AutoComplete.vue";
 // import CustomInput from '@/layouts/CustomInput.vue'
 
 import { useAdminStore } from "../stores/counter";
+import { useTagFilmsStore } from "../stores/tag-films";
+import { useTypeFilmsStore } from "../stores/type-films";
+import { useFilmsStore } from "../stores/films";
 
 const adminStore = useAdminStore();
+const tagFilmsStore = useTagFilmsStore();
+const typeFilmsStore = useTypeFilmsStore();
+const filmsStore = useFilmsStore();
 const propsd = defineProps({
   // showAdd: Boolean
   dataFilm: Object,
 });
 
 // const data = ref([])
-const film = ref([]);
+const film = ref();
 const addFilm = () => {
-  axios
-    .post("http://127.0.0.1:4212/film", propsd.dataFilm)
-    .then((res) => (film.value = res.data));
+  filmsStore.add(propsd.dataFilm)
   console.log(film.value);
+  adminStore.setShowAdd(false)
 };
 
-const tag_film = ref([]);
+// const tag_film = ref([]);
 
-onMounted(() =>{
-  axios
-  .get("http://127.0.0.1:4212/tag_films")
-  .then((res) => (tag_film.value = res.data));
-})
-const type_film = ref([]);
-onMounted(() =>{
-  axios
-  .get("http://127.0.0.1:4212/type_films")
-  .then((res) => (type_film.value = res.data));
-})
+// onMounted(() =>{
+//   axios
+//   .get("http://127.0.0.1:4212/tag_films")
+//   .then((res) => (tag_film.value = res.data));
+// })
+// const type_film = ref([]);
+// onMounted(() =>{
+//   axios
+//   .get("http://127.0.0.1:4212/type_films")
+//   .then((res) => (type_film.value = res.data));
+// })
 const img_src = ref("./images/film/filmTest.jpg");
 // const message = ref({
 //     name: ''
@@ -54,7 +59,7 @@ const loadFile = () => {
   <div v-show="adminStore.showAdd" class="add">
     <div class="box">
       <h2 class="title">Film</h2>
-      {{ data }}
+      <!-- {{ data }} -->
       <hr />
       <div class="content row">
         <div class="film_id c-6">
@@ -93,25 +98,27 @@ const loadFile = () => {
           ></Textarea>
         </div>
         <div class="film_tags c-12">
+          <!-- {{ tagFilmsStore.tag_films }} -->
           <AutoComplete
             :type="'tag'"
-            :lists="tag_film"
-            :selected="dataFilm.film_tags"
+            :lists="tagFilmsStore.tag_films"
             @updateSelected="dataFilm.film_tags = $event"
+            :selected="dataFilm.film_tags"
             label="Tags of Film"
-          ></AutoComplete>
+            ></AutoComplete>
         </div>
-        {{ dataFilm.film_tags }}
+        <!-- {{ dataFilm.film_tags }} -->
         <div class="film_types c-12">
+          <!-- {{ typeFilmsStore.type_films }} -->
           <AutoComplete
             :type="'type'"
-            :lists="type_film"
+            :lists="typeFilmsStore.type_films"
             :selected="dataFilm.film_types"
             label="Types of Film"
             @updateSelected="dataFilm.film_types = $event"
           ></AutoComplete>
         </div>
-        {{ dataFilm.film_types }}
+        <!-- {{ dataFilm.film_types }} -->
       </div>
       <hr />
       <div class="btn">

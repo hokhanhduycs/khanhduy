@@ -68,11 +68,17 @@
 
   }
   // console.log(propsd.label)
-  // return propsd.lists
-  return propsd.lists.filter(list => {
-    // console.log(propsd.type, list['tag_film_name']);
-    return list[`${propsd.type}_film_name`].toLowerCase().includes(searchSelect.value.toLowerCase())
-  })
+    // console.log( propsd.lists)
+    // can tim hieu sau bo try catch bi loi
+    try {  
+      return propsd.lists.filter(list => {
+        console.log(propsd.type, list['tag_film_name']);
+        return list[`${propsd.type}_film_name`].toLowerCase().includes(searchSelect.value.toLowerCase())
+      })
+    } catch (error) {
+    return propsd.lists
+    
+  }
  })
 
 </script>
