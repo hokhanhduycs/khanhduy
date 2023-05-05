@@ -9,7 +9,7 @@
             <Chip v-for="(item, index) in selectedT" 
             :key="index"
             @click.native="delSelect(index)"
-            >{{ item }}</Chip>
+            >{{ item[`${type}_film_name`] }}</Chip>
           <!-- ============ -->
           <input
             placeholder="Search"
@@ -48,7 +48,8 @@
   const showSelect = ref(false)
  const selectedT = computed(()=> propsd.selected)
  const addSelect = (value) =>{
-   selectedT.value.push(value[`${propsd.type}_film_name`])
+  //  selectedT.value.push(value[`${propsd.type}_film_name`])
+   selectedT.value.push(value)
    showSelect.value = false
    searchSelect.value = ""
    emits("updateSelected", selectedT.value)
@@ -56,7 +57,7 @@
   }
   const delSelect = (value) =>{
     selectedT.value.splice(value, 1)
-   console.log(selectedT.value)
+  //  console.log(selectedT.value)
   return selectedT
  }
  const searchSelect = ref("")
@@ -72,7 +73,7 @@
     // can tim hieu sau bo try catch bi loi
     try {  
       return propsd.lists.filter(list => {
-        console.log(propsd.type, list['tag_film_name']);
+        // console.log(propsd.type, list['tag_film_name']);
         return list[`${propsd.type}_film_name`].toLowerCase().includes(searchSelect.value.toLowerCase())
       })
     } catch (error) {

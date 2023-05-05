@@ -8,8 +8,9 @@
     <div class="table-th row">
       <div class="c-1 t-j id">ID</div>
       <div class="c-1 t-j img">Image</div>
-      <div class="c-3 t-j name-film">Name Film</div>
-      <div class="c-3 t-j tags-film">Tags Film</div>
+      <div class="c-2 t-j name-film">Name Film</div>
+      <div class="c-2 t-j tags-film">Types Film</div>
+      <div class="c-2 t-j tags-film">Tags Film</div>
       <div class="c-2 t-j current-chap">Current Chap</div>
       <div class="c-2 t-j control">Control</div>
     </div>
@@ -19,11 +20,18 @@
       <div class="c-1 t-j img">
         <img :src="film.film_img" alt="">
       </div>
-      <div class="c-3 t-j name-film">{{ film.film_name }}</div>
-      <div class="c-3 t-j tags-film row">
-        {{ film.film_types }}à
+      <div class="c-2 t-j name-film">{{ film.film_name }}</div>
+      <div class="c-2 t-j types-film row">
+    
+        <div class="tag" small v-for="index in film.film_types" :key="index" >
+          {{ index.type_film_name }}
+        </div>
+
+      </div>
+      <div class="c-2 t-j tags-film row">
+ 
         <div class="tag" small v-for="tag in film.film_tags" :key="tag">
-          {{ tag.tag_title }}
+          {{ tag.tag_film_name }}
         </div>
 
       </div>
@@ -41,7 +49,7 @@
 <script setup>
 import Button from "@/components/Button.vue";
 import Add from '@/admin/Add.vue'
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { useAdminStore } from '../stores/counter';
 import { useFilmsStore } from '../stores/films';
 import axios from "axios";
@@ -60,7 +68,7 @@ const dataFilm = ref({
 })
 const addNew = () =>{
   adminStore.setShowAdd(true)
-  const id = -1
+
   dataFilm.value.film_id = null
   dataFilm.value.film_chap = ""
   dataFilm.value.film_name= ""
@@ -69,10 +77,12 @@ const addNew = () =>{
   dataFilm.value.film_tags = []
   dataFilm.value.film_types = []
 }
-// const editFilm = (id) =>{
+
 const editFilm = (id) =>{
   adminStore.setShowAdd(true)
   
+  // axios
+  // .get()
   axios
   .get(`http://127.0.0.1:4212/film/${id}`)
   .then(res => {
@@ -81,8 +91,8 @@ const editFilm = (id) =>{
     dataFilm.value.film_img = res.data.film_img,
     dataFilm.value.film_chap = res.data.film_chap,
     dataFilm.value.film_describe = res.data.film_describe,
-    dataFilm.value.film_tags = res.data.film_tags,
-    dataFilm.value.film_types = res.data.film_types
+    dataFilm.value.film_tags = [],
+    dataFilm.value.film_types =[]
   })
 }
 const delFilm = (id) =>{

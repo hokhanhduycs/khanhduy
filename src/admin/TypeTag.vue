@@ -109,7 +109,9 @@ const editTag = (id) => {
 const editType = (id) => {
   showAddTypeTag.setShowAddTypeTag(true);
   // console.log(id);
-  axios.get(`http://127.0.0.1:4212/type_film/${id}`).then((res) => {
+  axios
+  .get(`http://127.0.0.1:4212/type_film/${id}`)
+  .then((res) => {
     (type.value.type_film_id = res.data.type_film_id),
       (type.value.type_film_name = res.data.type_film_name);
   });

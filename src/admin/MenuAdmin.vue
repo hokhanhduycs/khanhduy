@@ -20,20 +20,28 @@
                 <font-awesome-icon icon="fa-solid fa-tag"/>
                 Type/Tag
             </div>
+            <div @click="show = 'test'"
+            :class="{activate: show == 'test'}"
+            class="menu-item">
+                <font-awesome-icon icon="fa-solid fa-tag"/>
+                Test
+            </div>
         </div>   
         
     </div>
     <Film v-show="show == 'film'"></Film>
     <TypeTag v-show="show == 'typetag'"></TypeTag>
     <Chap v-show="show == 'chap'"></Chap>
+    <Test v-show="show == 'test'"></Test>
 </template>
 <script setup>
 import Film from '@/admin/Film.vue'
 import TypeTag from '@/admin/TypeTag.vue'
 import Chap from '@/admin/Chap.vue'
+import Test from '@/admin/Test.vue'
 import {ref} from "vue"
 
-const show = ref('typetag')
+const show = ref('film')
 </script>
 <style scoped lang="scss">
     .menu{

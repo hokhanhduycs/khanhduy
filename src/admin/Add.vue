@@ -1,6 +1,6 @@
 <script setup>
-import { onMounted, ref } from "vue";
-import axios from "axios";
+import { ref } from "vue";
+// import axios from "axios";
 
 import Button from "@/components/Button.vue";
 import Tag from "@/components/Tag.vue";
@@ -23,31 +23,17 @@ const propsd = defineProps({
   dataFilm: Object,
 });
 
-// const data = ref([])
-const film = ref();
+const selectTag = ref([])
+const selectType = ref([])
 const addFilm = () => {
-  filmsStore.add(propsd.dataFilm)
-  console.log(film.value);
-  adminStore.setShowAdd(false)
+  filmsStore.add(propsd.dataFilm, selectTag, selectType)
+  // adminStore.setShowAdd(false)
+  // console.log(selectTag.value);
+  // console.log(selectType.value);
 };
 
-// const tag_film = ref([]);
-
-// onMounted(() =>{
-//   axios
-//   .get("http://127.0.0.1:4212/tag_films")
-//   .then((res) => (tag_film.value = res.data));
-// })
-// const type_film = ref([]);
-// onMounted(() =>{
-//   axios
-//   .get("http://127.0.0.1:4212/type_films")
-//   .then((res) => (type_film.value = res.data));
-// })
 const img_src = ref("./images/film/filmTest.jpg");
-// const message = ref({
-//     name: ''
-// })
+
 
 const data = ref(propsd.dataFilm);
 const loadFile = () => {
@@ -102,8 +88,8 @@ const loadFile = () => {
           <AutoComplete
             :type="'tag'"
             :lists="tagFilmsStore.tag_films"
-            @updateSelected="dataFilm.film_tags = $event"
-            :selected="dataFilm.film_tags"
+            @updateSelected="selectTag = $event"
+            :selected="selectTag"
             label="Tags of Film"
             ></AutoComplete>
         </div>
@@ -113,9 +99,9 @@ const loadFile = () => {
           <AutoComplete
             :type="'type'"
             :lists="typeFilmsStore.type_films"
-            :selected="dataFilm.film_types"
+            :selected="selectType"
             label="Types of Film"
-            @updateSelected="dataFilm.film_types = $event"
+            @updateSelected="selectType = $event"
           ></AutoComplete>
         </div>
         <!-- {{ dataFilm.film_types }} -->
